@@ -20,6 +20,7 @@ module.exports = function () {
 
 	var appendNavbarState = function (state) {
 		var navbar = {};
+		navbar.collapsed = state.isImmersive;
 		navbar.logout = state.user.isAuthenticated;
 		navbar.login = !state.user.isAuthenticated;
 		navbar.avatar = state.user.isAuthenticated;
@@ -37,7 +38,8 @@ module.exports = function () {
 	var appendSidebarState = function (state) {
 		var items = ['dashboard', 'portals', 'events', 'carts', 'account', 'settings'];
 		var sidebar = {};
-		sidebar.menu = {};
+		sidebar.collapsed = state.isImmersive;
+		sidebar.menu = {}
 		items.forEach(function (elem) {
 			if (state.location.startsWith('/components/' + elem)) {
 				sidebar.menu[elem] = true;
@@ -56,6 +58,7 @@ module.exports = function () {
 	var getState = function (req) {
 		var state = {};
 		state.location = req.url;
+		state.isImmersive = state.location.startsWith('/home');
 		state = appendUserState(state, req);
 		state = appendNavbarState(state);
 		state = appendSidebarState(state);
