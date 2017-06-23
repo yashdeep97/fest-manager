@@ -37,12 +37,13 @@ module.exports = function () {
 	var appendSidebarState = function (state) {
 		var items = ['dashboard', 'portals', 'events', 'carts', 'account', 'settings'];
 		var sidebar = {};
+		sidebar.menu = {};
 		items.forEach(function (elem) {
 			if (state.location.startsWith('/components/' + elem)) {
-				sidebar[elem] = true;
+				sidebar.menu[elem] = true;
 				if (elem == 'events') {
 					// TODO fetch event categories from db to populate
-					// sidebar.events.categories = db.events().fetch(categories).unique()
+					// sidebar.menu.events.categories = db.events().fetch(categories).unique()
 				}
 			} else {
 				sidebar[elem] = false;
