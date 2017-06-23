@@ -48,7 +48,7 @@ module.exports = function () {
 					// sidebar.menu.events.categories = db.events().fetch(categories).unique()
 				}
 			} else {
-				sidebar[elem] = false;
+				sidebar.menu[elem] = false;
 			}
 		});
 		state.sidebar = sidebar;
@@ -58,7 +58,8 @@ module.exports = function () {
 	var getState = function (req) {
 		var state = {};
 		state.location = req.url;
-		state.isImmersive = state.location.startsWith('/home');
+		state.isImmersive = state.location.startsWith('/components/home');
+		state.isImmersive = state.location.startsWith('/components/dashboard');
 		state = appendUserState(state, req);
 		state = appendNavbarState(state);
 		state = appendSidebarState(state);
