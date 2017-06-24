@@ -37,7 +37,7 @@ body
 					label MAIN
 					ul
 						each val, key in navigation
-							li(_route=('/'+key) _triggers=val.triggers class=val.initial)
+							li(_route=val.route _triggers=val.triggers class=val.initial)
 								i
 								span= val.label
 				each val in navigation
